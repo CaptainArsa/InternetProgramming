@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        let treug = [];
+        for (let n = 1; n <= 10; n++) treug.push(n * (n + 1) / 2);
+        document.write('<p>treug = ');
+        treug.forEach(element => { document.write(element + '  '); });
+        document.write('</p>');
+        
+        let kvd = [];
+        for (let i = 1; i <= 10; i++) kvd.push(i * i);
+        document.write('<p>kvd = ');
+        kvd.forEach(element => { document.write(element + ' '); });
+        document.write('</p>');
+
+        let rez = [...treug, ...kvd];
+        document.write('<p>rez = ');
+        rez.forEach(element => { document.write(element + ' '); });
+        document.write('</p>');
+        
+        document.write('<p>rez (sorted) = ');
+        rez.sort(function(a, b) { return b - a; });
+        rez.forEach(element => { document.write(element + ' '); });
+        document.write('</p>');
+        document.write('<a href="https://CaptainArsa.github.io/InternetProgramming/Lab4/Lab4_2.html">Exercise 2</a>');
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul id="book-list" onmousedown="return false" onselectstart="return false">
+        <li data-selected="false">Федор Достоевский - Братья Карамазовы</li>
+        <li data-selected="false">Лев Толстой - Анна Каренина</li>
+        <li data-selected="false">Михаил Булгаков - Собачье сердце</li>
+        <li data-selected="false">Антуан де Сент-Экзюпери - Маленький принц</li>
+        <li data-selected="false">Виктор Гюго - Отверженные</li>
+        <li data-selected="false">Оскар Уайльд - Портрет Дориана Грея</li>
+        <li data-selected="false">Эрнест Хемингуэй - Старик и море</li>
+        <li data-selected="false">Александр Дюма - Граф Монте-Кристо</li>
+        <li data-selected="false">Жюль Верн - Двадцать тысяч лье под водой</li>
+        <li data-selected="false">Рэй Брэдбери - 451 градус по Фаренгейту</li>
+        <li data-selected="false">Эрих Мария Ремарк - Три товарища</li>
+        <li data-selected="false">Иван Тургенев - Дворянское гнездо</li>
+        <li data-selected="false">Анна Ахматова - Реквием</li>
+        <li data-selected="false">Артур Конан Дойл - Приключения Шерлока Холмса</li>
+        <li data-selected="false">Габриэль Гарсиа Маркес - Сто лет одиночества</li>
+        <li data-selected="false">Франц Кафка - Процесс</li>
+        <li data-selected="false">Джером К. Джером - Трое в лодке, не считая собаки</li>
+        <li data-selected="false">Андрей Платонов - Чевенгур</li>
+        <li data-selected="false">Эмили Бронте - Грозовой перевал</li>
+        <li data-selected="false">Николай Гоголь - Мертвые души</li>
+    </ul>
+    <script>
+        let bookList = document.getElementById("book-list");
+        let selectedItems = [];
+
+        function toggleSelected(item) {
+            if (item.getAttribute("data-selected") === "false") {
+                item.style.color = "orange";
+                item.setAttribute("data-selected", "true");
+                selectedItems.push(item);
+            }
+            else {
+                item.style.color = "black";
+                item.setAttribute("data-selected", "false");
+                selectedItems.splice(selectedItems.indexOf(item), 1);
+            }
+        }
+        
+        function handleItemClick(event) {
+            let item = event.target;
+            if (event.ctrlKey) {
+                toggleSelected(item);
+            }
+            else if (event.shiftKey) {
+                let startIndex = Array.prototype.indexOf.call(bookList.children, selectedItems[selectedItems.length - 1]);
+                let endIndex = Array.prototype.indexOf.call(bookList.children, item);
+                selectItems(startIndex, endIndex);
+            }
+            else {
+                if (selectedItems.length == 1 && item.getAttribute("data-selected") === "true") {
+                    toggleSelected(item);
+                }
+                else {
+                    selectedItems.forEach(function(selectedItem) {
+                        selectedItem.style.color = "black";
+                        selectedItem.setAttribute("data-selected", "false");
+                    });
+                    selectedItems = [];
+                    toggleSelected(item);
+                }
+            }
+        }
+
+        function selectItems(startIndex, endIndex) {
+            if (startIndex > endIndex) {
+                let temp = startIndex;
+                startIndex = endIndex;
+                endIndex = temp;
+            }
+            
+            for (let i = startIndex; i <= endIndex; i++) {
+                let item = bookList.children[i];
+                if (item.getAttribute("data-selected") === "false") {
+                    toggleSelected(item);
+                }
+            }
+        }
+        
+        for (let i = 0; i < bookList.children.length; i++) {
+            let item = bookList.children[i];
+            item.addEventListener("click", handleItemClick);
+        }
+    </script>
+</body>
+</html>

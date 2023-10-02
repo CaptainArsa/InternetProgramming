@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        #rectangle {
+			width: 270px;
+			height: 25px;
+			background-color: blue;
+			margin: 50px auto 0 auto;
+        }
+    </style>
+	<script>
+		function changeRectangle() {
+			var alignment = document.querySelector('input[name="alignment"]:checked').value;
+			var thickness = document.querySelector('input[name="thickness"]').value + "px";
+			var length = document.querySelector('input[name="length"]').value + "px";
+			var color = document.querySelector('select[name="color"]').value;
+
+			var rectangle = document.getElementById("rectangle");
+
+			rectangle.style.backgroundColor = color;
+			rectangle.style.width = length;
+			rectangle.style.height = thickness;
+
+			switch (alignment) {
+				case "left":
+					rectangle.style.margin = "50px auto 0 0";
+				break;
+
+				case "center":
+					rectangle.style.margin = "50px auto 0 auto";
+				break;
+
+				case "right":
+					rectangle.style.margin = "50px 0 0 auto";
+				break;
+			}
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<label>Выравнивание:</label><br>
+		<input type="radio" id="left" name="alignment" value="left">
+		<label for="left">Слева</label><br>
+		<input type="radio" id="center" name="alignment" value="center" checked="checked">
+		<label for="center">По центру</label><br>
+		<input type="radio" id="right" name="alignment" value="right">
+		<label for="right">Справа</label><br><br>
+
+		<label>Толщина:</label><br>
+		<input type="number" name="thickness" value="25"><br><br>
+
+		<label>Длина:</label><br>
+		<input type="number" name="length" value="270"><br><br>
+
+		<label>Цвет:</label><br>
+		<select name="color">
+			<option value="blue">Синий</option>
+			<option value="red">Красный</option>
+			<option value="green">Зеленый</option>
+		</select><br><br>
+
+		<input type="button" value="Применить" onclick="changeRectangle()">
+	</form>
+
+	<div id="rectangle"></div><br>
+
+	<a href="https://CaptainArsa.github.io/InternetProgramming/Lab8/Lab8_4.html">Exercise 4</a>
+</body>
+</html>

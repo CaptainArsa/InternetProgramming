@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        class MobilePhone {
+            constructor(type, os, screenSize, screenResolution, ram) {
+                this._type = type;
+                this._os = os;
+                this._screenSize = screenSize;
+                this._screenResolution = screenResolution;
+                this._ram = ram;
+            }
+
+            get type() { return this._type; }
+            set type(value) { this._type = value; }
+
+            get os() { return this._os; }
+            set os(value) { this._os = value; }
+
+            get screenSize() { return this._screenSize; }
+            set screenSize(value) { this._screenSize = value; }
+
+            get screenResolution() { return this._screenResolution; }
+            set screenResolution(value) { this._screenResolution = value; }
+
+            get ram() { return this._ram; }
+            set ram(value) { this._ram = value; }
+
+            getInfo() {
+                return `type: ${this.type}, os: ${this.os}, screenSize: ${this.screenSize}, screenResolution: ${this.screenResolution}, ram: ${this.ram}`;
+            }
+        }
+
+        class MobilePhoneExtended extends MobilePhone {
+            constructor(type, os, screenSize, screenResolution, ram, releaseDate, price) {
+                super(type, os, screenSize, screenResolution, ram);
+                this._releaseDate = releaseDate;
+                this._price = price;
+            }
+
+            get releaseDate() { return this._releaseDate; }
+            set releaseDate(value) { this._releaseDate = value; }
+
+            get price() { return this._price; }
+            set price(value) { this._price = value; }
+
+            getInfo() {
+                return `type: ${this.type}, os: ${this.os}, screenSize: ${this.screenSize}, screenResolution: ${this.screenResolution}, ram: ${this.ram}, releaseDate: ${this.releaseDate}, price: ${this.price}`;
+            }
+        }
+
+        let mobilePhone = new MobilePhoneExtended('smartphone', 'android', 6, '1080 x 1920', 8, 2023, 20000);
+        document.write(`<p>Свойства объекта mobilePhone: "${mobilePhone.getInfo()}"</p>`);
+        document.write('<a href="https://CaptainArsa.github.io/InternetProgramming/Lab6/lab6-5.html">Exercise 5</a>');
+    </script>
+</head>
+<body>
+</body>
+</html>

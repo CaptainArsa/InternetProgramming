@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+</head>
+<body>
+    <ul id="links">
+    <li><a href="index-html">index-html</a></li>
+    <li><a href="https://google.com">https://google.com</a></li>
+    <li><a href="https://www.gstu.by/">https://www.gstu.by/</a></li>
+    <li><a href="file:///G:/users/RPI/test.html">file:///G:/users/RPI/test.html</a></li>
+    <li><a href="/local/path">/local/path</a></li>
+    <li><a href="http://www.php.su/">http://www.php.su/</a></li>
+    <li><a href="/images/cat.jpg">/images/cat.jpg</a></li>
+    <li><a href="https://www.tut.by/">https://www.tut.by/</a></li>
+    </ul>
+    <a href="https://CaptainArsa.github.io/InternetProgramming/Lab7/lab7_3.html">Exercise 3</a>
+    <script>
+    let links = document.getElementById("links").getElementsByTagName("a");
+
+    for (let i = 0; i < links.length; i++) {
+        if (links[i].innerHTML.indexOf("http://") === 0 || links[i].innerHTML.indexOf("https://") === 0) {
+            links[i].style.color = "black";
+            links[i].style.textDecoration = "none";
+            links[i].style.borderBottom = "1px dashed black";
+        }
+    }
+    </script>
+</body>
+</html>

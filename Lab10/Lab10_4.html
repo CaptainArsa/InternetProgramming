@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script src="jquery-3.7.0.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+
+        #today {
+            background-color: #fffac9;
+        }
+
+        .event {
+            background-color: #d1fcff;
+        }
+
+        #modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        #modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <label for="date-input">Введите дату:</label>
+    <input type="date" id="date-input">
+
+    <table id="calendar"></table>
+
+    <div id="modal">
+        <div id="modal-content">
+            <form id="form">
+                <label>Мероприятие запланированное на </label><label id="modal-date"></label><br>
+                <textarea style="width: 400px; height: 70px; resize: both; overflow: auto;" type="text" id="event"></textarea>
+                <br><br>
+
+                <input type="button" value="Записать мероприятие" onclick="addEvent()">
+                <input type="button" value="Закрыть" onclick="closeModal()">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let dateInput = $('#date-input');
+        let calendar = $('#calendar');
+        let events = [];
+        let item = localStorage.getItem("events");
+        if (item !== null) {
+            events = JSON.parse(item);
+        }
+
+        dateInput.on('change', createCalendar);
+
+        let today = new Date();
+        today.setHours(today.getHours() + 3);
+        dateInput.val(today.toISOString().substr(0, 10));
+        createCalendar();
+        updateCalendar();
+
+        function addEvent() {
+            events.push({ date: $("#modal-date").html(), event: $('#event').val() });
+            localStorage.setItem("events", JSON.stringify(events));
+            updateCalendar();
+            closeModal();
+        }
+
+        function openModal(selectedDate) {
+            let date = new Date(dateInput.val());
+            date.setDate(selectedDate);
+            date.setHours(date.getHours() + 3);
+            date = date.toLocaleDateString()
+            $('#modal-date').html(date);
+
+            $('#event').val('');
+            for (let i = 0; i < events.length; i++) {
+                if (events[i].date == date) {
+                    $('#event').val(events[i].event);
+                }
+            }
+
+            $('#modal').css("display", "block");
+        }
+
+        function closeModal() {
+            $('#modal').css("display", "none");
+            updateCalendar();
+        }
+
+        function updateCalendar() {
+            $('td', $('tr', $('#calendar'))).each(function () {
+                for (let i = 0; i < events.length; i++) {
+                    let eventDay = parseInt(events[i].date.substr(0, 3));
+                    let eventMonth = parseInt(events[i].date.substr(3, 5));
+                    let date = new Date(dateInput.val());
+                    let month = date.getMonth() + 1;
+                    if ((eventDay.toString() == $(this).html()) && (eventMonth == month)) {
+                        $(this).addClass("event");
+                    }
+                }
+            });
+        }
+
+        function createCalendar() {
+            calendar.empty();
+
+            var header = $("<tr></tr>");
+            header.append($("<th>Пн</th>"));
+            header.append($("<th>Вт</th>"));
+            header.append($("<th>Ср</th>"));
+            header.append($("<th>Чт</th>"));
+            header.append($("<th>Пт</th>"));
+            header.append($("<th>Сб</th>"));
+            header.append($('<th style="color: red">Вс</th>'));
+            calendar.append(header);
+
+            let date = new Date(dateInput.val());
+            let year = date.getFullYear();
+            let month = date.getMonth();
+
+            let daysInMonth = new Date(year, month + 1, 0).getDate();
+            let firstDayOfMonth = new Date(year, month, 1).getDay();
+            if (firstDayOfMonth == 0) firstDayOfMonth = 7;
+
+            let tr = $('<tr>');
+            for (let i = 1; i < firstDayOfMonth; i++) {
+                tr.append($('<td>'));
+            }
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                tr.append($('<td onclick="openModal($(this).html())">').text(i));
+                if (year == today.getFullYear() && month == today.getMonth() && i == today.getDate()) {
+                    tr.find('td:last-child').attr("id","today");
+                }
+
+                if ((firstDayOfMonth + i - 1) % 7 == 0) {
+                    tr.find('td:last-child').css("color", "red")
+                    calendar.append(tr);
+                    tr = $('<tr>');
+                }
+            }
+
+            if (tr.find('td').length > 0) {
+                for (let i = tr.find('td').length; i < 7; i++) {
+                    tr.append($('<td>'));
+                }
+                calendar.append(tr);
+            }
+            updateCalendar();
+        }        
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script src="jquery-3.7.0.js"></script>
+</head>
+<body>
+    <input type="text" id="input">
+    <br><br>
+
+    <button class="num">0</button>
+    <button class="num">1</button>
+    <button class="num">2</button>
+    <button class="num">3</button>
+    <button class="num">4</button>
+    <button class="num">5</button>
+    <button class="num">6</button>
+    <button class="num">7</button>
+    <button class="num">8</button>
+    <button class="num">9</button>
+    <br><br>
+
+    <button class="oper">+</button>
+    <button class="oper">-</button>
+    <button class="oper">*</button>
+    <button class="oper">/</button>
+    <br><br>
+    
+    <button id="calc">Вычислить</button>
+    <input type="text" id="result">
+    <br><br>
+    
+    <button id="clear">Очистить</button>
+    <button id="save">Сохранить</button>
+    <br><br>
+
+    <a href="https://CaptainArsa.github.io/InternetProgramming/Lab10/Lab10_3.html">Exercise 3</a>
+    
+    <script>
+        let input = $("#input");
+        let result = $("#result");
+
+        let lastExpression = localStorage.getItem("lastExpression");
+        let lastResult = localStorage.getItem("lastResult");
+        if (lastExpression && lastResult) {
+            input.val(lastExpression);
+            result.val(lastResult);
+        }
+
+        $(".num").click(function() {
+            input.val(input.val() + $(this).text());
+        });
+
+        $(".oper").click(function() {
+            input.val(input.val() + $(this).text());
+        });
+
+        $("#calc").click(function() {
+            let resultValue = eval(input.val());
+            result.val(resultValue);
+        });
+
+        $("#clear").click(function() {
+            input.val("");
+            result.val("");
+        });
+
+        $("#save").click(function() {
+            localStorage.setItem("lastExpression", input.val());
+            localStorage.setItem("lastResult", result.val());
+            alert("Выражение сохранено в localStorage");
+        });
+    </script>
+</body>
+</html>

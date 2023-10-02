@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        fruits = ['apple', 'pineapple', 'mango', 'melon', 'grape'];
+        citrus = ['orange', 'lemon', 'lime'];
+
+        document.write('<p>а) fruits = ' + fruits + '</p>');
+        
+        document.write('<p>б) citrus = ' + citrus + '</p>');
+        
+        fruits = [...fruits, ...citrus];
+        document.write('<p>в) fruits = ' + fruits + '</p>');
+
+        let mangoIndex = 0;
+        for (let i = 0; i < fruits.length; i++) if (fruits[i] == 'mango') mangoIndex = i + 1;
+        fruits.splice(mangoIndex, 0, 'pear', 'cherry', 'plum', 'raspberry', 'strawberry');
+        document.write('<p>г) fruits = ' + fruits + '</p>');
+
+        document.write('<p>д) fruits = ' + fruits.slice(0, -3) + '</p>');
+        
+        document.write('<p>е) fruits = ' + fruits.sort() + '</p>');
+
+        document.write('<p>ж) fruits = ' + fruits.reverse() + '</p>');
+
+        document.write('<p>з) fruits = ' + fruits.sort((a, b) => a.length - b.length) + '</p>');
+    </script>
+</head>
+<body>
+</body>
+</html>

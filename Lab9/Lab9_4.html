@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <script>
+        let box = document.getElementById('box');
+        let counter = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+        let rad = 150;
+
+        window.addEventListener('mousemove', function(event) {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        function step() {
+            requestAnimationFrame(step);
+            counter += 0.1;
+            if (counter > Math.PI * 2) counter = 0;
+            box.style.top = mouseY + Math.sin(counter) * rad - 50 + 'px';
+            box.style.left = mouseX + Math.cos(counter) * rad - 50 + 'px';
+        }
+
+        step();
+    </script>
+</body>
+</html>

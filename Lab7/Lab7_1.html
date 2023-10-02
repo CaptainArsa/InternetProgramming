@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>   
+</head>
+<body>
+    <h3>Таблица объектов в массиве:</h3>
+    <table id="myTable">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>OS</th>
+            <th>Screen size</th>
+            <th>Screen resolution</th>
+            <th>RAM</th>
+            <th>Release date</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    </table>
+    <a href="https://CaptainArsa.github.io/InternetProgramming/Lab7/Lab7_2.html">Exercise 2</a>
+    <script>
+        class MobilePhone {
+            constructor(type, os, screenSize, screenResolution, ram) {
+                this._type = type;
+                this._os = os;
+                this._screenSize = screenSize;
+                this._screenResolution = screenResolution;
+                this._ram = ram;
+            }
+
+            get type() { return this._type; }
+            set type(value) { this._type = value; }
+
+            get os() { return this._os; }
+            set os(value) { this._os = value; }
+
+            get screenSize() { return this._screenSize; }
+            set screenSize(value) { this._screenSize = value; }
+
+            get screenResolution() { return this._screenResolution; }
+            set screenResolution(value) { this._screenResolution = value; }
+
+            get ram() { return this._ram; }
+            set ram(value) { this._ram = value; }
+
+            getInfo() {
+                return `type: ${this.type}, os: ${this.os}, screenSize: ${this.screenSize}, screenResolution: ${this.screenResolution}, ram: ${this.ram}`;
+            }
+        }
+
+        class MobilePhoneExtended extends MobilePhone {
+            constructor(type, os, screenSize, screenResolution, ram, releaseDate, price) {
+                super(type, os, screenSize, screenResolution, ram);
+                this._releaseDate = releaseDate;
+                this._price = price;
+            }
+
+            get releaseDate() { return this._releaseDate; }
+            set releaseDate(value) { this._releaseDate = value; }
+
+            get price() { return this._price; }
+            set price(value) { this._price = value; }
+
+            getInfo() {
+                return `type: ${this.type}, os: ${this.os}, screenSize: ${this.screenSize}, screenResolution: ${this.screenResolution}, ram: ${this.ram}, releaseDate: ${this.releaseDate}, price: ${this.price}`;
+            }
+        }
+
+        let mobilePhones = []
+        for (let i = 0; i < 10; i++) {
+            mobilePhones[i] = new MobilePhoneExtended('smartphone ' + (i + 1), 'android', 6, '1080 x 1920', 8, 2023, Math.floor(Math.random() * 100000 + 1000));
+        }
+    
+        let table = document.getElementById("myTable");
+        let tbody = table.getElementsByTagName("tbody")[0];
+    
+        for (let i = 0; i < mobilePhones.length; i++) {
+            let phone = mobilePhones[i];
+            let row = document.createElement("tr");
+
+            let cellType = document.createElement("td");
+            let cellOS = document.createElement("td");
+            let cellScreenSize = document.createElement("td");
+            let cellScreenResolution = document.createElement("td");
+            let cellRam = document.createElement("td");
+            let cellReleaseDate = document.createElement("td");
+            let cellPrice = document.createElement("td");
+    
+            cellType.innerHTML = phone.type;
+            cellOS.innerHTML = phone.os;
+            cellScreenSize.innerHTML = phone.screenSize;
+            cellScreenResolution.innerHTML = phone.screenResolution;
+            cellRam.innerHTML = phone.ram;
+            cellReleaseDate.innerHTML = phone.releaseDate;
+            cellPrice.innerHTML = phone.price;
+    
+            row.appendChild(cellType);
+            row.appendChild(cellOS);
+            row.appendChild(cellScreenSize);
+            row.appendChild(cellScreenResolution);
+            row.appendChild(cellRam);
+            row.appendChild(cellReleaseDate);
+            row.appendChild(cellPrice);
+    
+            tbody.appendChild(row);
+        }
+    </script> 
+</body>
+</html>

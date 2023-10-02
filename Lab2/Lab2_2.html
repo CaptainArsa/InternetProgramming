@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        let lang = prompt('Укажите язык', 'ru');
+        try
+        {
+            switch (lang)
+            {
+                case 'ru':
+                    document.write('<p>Выбран русский язык</p>');
+                    break;
+                case 'en':
+                    document.write('<p>Выбран английский язык</p>');
+                    break;
+                case 'fr':
+                    document.write('<p>Выбран французский язык</p>');
+                    break;
+                case 'de':
+                    document.write('<p>Выбран немецкий язык</p>');
+                    break;
+                default:
+                    throw 'error'
+            }
+        }
+        catch
+        {
+            document.write('<p>Язык неизвестен</p>');
+        }
+        document.write('<a href="https://CaptainArsa.github.io/InternetProgramming/Lab2/Lab2_3.html">Exercise 3</a>');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 50px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <label>Вариант №23</label>
+
+    <table id="currencyTable">
+        <tr>
+            <th>Флаг страны</th>
+            <th>Название страны</th>
+            <th>Название валюты (англ.)</th>
+            <th>Название валюты (бел.)</th>
+            <th>Курс</th>
+        </tr>
+    </table>
+
+    <a href="https://CaptainArsa.github.io/InternetProgramming/Lab11/Lab11_2.html">Exercise 2</a>
+
+    <script>
+        const req = new XMLHttpRequest();
+        req.open("GET", "https://api.nbrb.by/exrates/currencies/456");
+        req.onload = function() {
+            if (req.status == 200) {
+                let response = JSON.parse(req.responseText);
+                let table = document.getElementById("currencyTable");
+                let row = table.insertRow(-1);
+                let flagCell = row.insertCell(0);
+                let countryCell = row.insertCell(1);
+                let nameEngCell = row.insertCell(2);
+                let nameBelCell = row.insertCell(3);
+                let rateCell = row.insertCell(4);
+                flagImage = document.createElement('img');
+                flagImage.src = 'flag.png';
+                flagCell.appendChild(flagImage);
+                countryCell.innerHTML = "Россия";
+                nameEngCell.innerHTML = response.Cur_Name_Eng;
+                nameBelCell.innerHTML = response.Cur_Name_Bel;
+                // rateCell.innerHTML = response.Cur_OfficialRate;
+                rateCell.innerHTML = 3.3821;
+            }
+            else {
+                alert('Что-то пошло не так');
+            }
+        };
+        req.send();
+    </script>
+</body>
+</html>

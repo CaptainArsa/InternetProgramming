@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        document.write('<p>(Вариант №13)</p>');
+
+        let arr = [];
+        for (let i = 0; i < 15; i++) arr.push(Math.floor(Math.random() * 1000));
+        document.write('<p>arr = ');
+        arr.forEach(element => { document.write(element + ' '); });
+        document.write('</p>');
+
+        while (true)
+        {
+            a = parseInt(prompt('arr = ' + arr + '\nВведите значение A', '500'));
+            if (!isNaN(a)) break;
+            else alert('Пожалуйста введите A правильно!');
+        }
+
+        let total = 0;
+        for (let i = 0; i < 15; i++) if (arr[i] > 0) total += arr[i];
+        document.write('<p>Среднее арифметическое ненулевых чисел = ' + total/16 + '</p>');
+
+        let count = 0;
+        for (let i = 1; i < 15; i += 2) if(arr[i] < a) count++;
+        document.write('<p>Количество чисел, стоящих на четных местах и меньше A = ' + count + '</p>');
+        
+        document.write('<a href="https://CaptainArsa.github.io/InternetProgramming/Lab4/lab4-4.html">Exercise 4</a>');
+    </script>
+</head>
+<body>
+</body>
+</html>

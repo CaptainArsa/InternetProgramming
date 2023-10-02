@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 30px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+<body>
+    <label></label>
+    
+    <table>
+        <tr>
+            <th>Курс RUS к PLN</th>
+            <th>Курс RUS к SEK</th>
+        </tr>
+        <tr>
+            <td id="rus-to-pln"></td>
+            <td id="rus-to-sek"></td>
+        </tr>
+    </table>
+  
+    <script>
+        async function getRates() {
+            let rusUrl = "https://api.nbrb.by/exrates/rates/456";
+            let plnUrl = "https://api.nbrb.by/exrates/rates/452";
+            let sekUrl = "https://api.nbrb.by/exrates/rates/464";
+
+            let response = await fetch(rusUrl);
+            let result = await response.json();
+            let rusRate = result.Cur_OfficialRate / 10;
+
+            response = await fetch(plnUrl);
+            result = await response.json();
+            let plnRate = result.Cur_OfficialRate;
+
+            response = await fetch(sekUrl);
+            result = await response.json();
+            let sekRate = result.Cur_OfficialRate;
+
+            let rusToPln = rusRate / plnRate;
+            document.getElementById("rus-to-pln").innerHTML = rusToPln.toFixed(4);
+
+            let rusToSek = rusRate / sekRate;
+            document.getElementById("rus-to-sek").innerHTML = rusToSek.toFixed(4);
+        }
+  
+        getRates();
+    </script>
+</body>
+</html>

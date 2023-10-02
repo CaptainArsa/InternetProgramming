@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 50px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+<body>
+    <label>(Вариант №23)</label>
+    <br><br>
+    
+    <label for="start-date">Начальная дата:</label>
+    <input type="date" id="start-date">
+
+    <label for="end-date">Конечная дата:</label>
+    <input type="date" id="end-date">
+
+    <button id="show-data" onclick="showData()">Показать данные</button>
+    <br><br>
+    
+    <a href="https://CaptainArsa.github.io/InternetProgramming/Lab11/Lab11_3.html">Exercise 3</a>
+
+    <table id="data-table">
+    <thead>
+    <tr>
+        <th>Дата</th>
+        <th>Валюта</th>
+        <th>Курс</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+    </table>
+
+    <script>
+        let apiUrl = 'https://api.nbrb.by/exrates/rates/456';
+        let dataTableBody = document.querySelector('#data-table tbody');
+
+        function showData() {
+            let startDate = new Date(document.getElementById('start-date').value);
+            let endDate = new Date(document.getElementById('end-date').value);
+
+            if (startDate > endDate) {
+                alert('Выберите начальную дату позже конечной');
+                return;
+            }
+
+            let dateRange = getDateRange(startDate, endDate);
+            let promises = dateRange.map(date => {
+                let formattedDate = formatDate(date);
+                let url = `${apiUrl}?ondate=${formattedDate}`;
+                return fetch(url).then(response => response.json());
+            });
+
+            Promise.all(promises).then(data => {
+                document.querySelector('#data-table tbody').innerHTML = '';
+                data.forEach(item => {
+                    let date = new Date(item.Date);
+                    let formattedDate = formatDate(date);
+                    let rate = item.Cur_OfficialRate;
+                    let row = `<tr><td>${formattedDate}</td><td>AFN</td><td>${rate}</td></tr>`;
+                    document.querySelector('#data-table tbody').insertAdjacentHTML('beforeend', row);
+                });
+            }).catch(error => {
+                alert(error);
+            });
+        }
+
+        function getDateRange(startDate, endDate) {
+            let dateRange = [];
+            let currentDate = new Date(startDate);
+            while (currentDate <= endDate) {
+                dateRange.push(currentDate);
+                currentDate = new Date(currentDate.getTime() + 24 * 60 * 60 * 1000);
+            }
+            return dateRange;
+        }
+
+        function formatDate(date) {
+            let year = date.getFullYear();
+            let month = ('0' + (date.getMonth() + 1)).slice(-2);
+            let day = ('0' + date.getDate()).slice(-2);
+            return `${year}-${month}-${day}`;
+        }
+    </script>
+</body>
+</html>

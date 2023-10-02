@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arseniy Polyakov</title>
+    <script>
+        const mobilePhone = {
+            type: 'smartphone',
+            os: 'android',
+            screenSize: 6,
+            screenResolution: "1080 x 1920",
+            ram: 8,
+            getInfo: function()
+            {
+                return `type: ${this.type}, os: ${this.os}, screenSize: ${this.screenSize}, screenResolution: ${this.screenResolution}, ram: ${this.ram}`;
+            }
+        }
+
+        document.write('<p>(Вариант №17)</p>');
+        document.write(`<p>Свойства объекта mobilePhone: "${mobilePhone.getInfo()}"</p>`);
+        document.write('<a href="https://CaptainArsa.github.io/InternetProgramming/Lab6/lab6-2.html">Exercise 2</a>');
+    </script>
+</head>
+<body>
+</body>
+</html>

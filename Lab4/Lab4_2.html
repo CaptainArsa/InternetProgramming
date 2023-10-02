@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        document.write('<p>(Вариант №13)</p>');
+
+        let arr = [];
+        for (let i = 0; i < 15; i++) arr.push(Math.floor(Math.random() * 1000));
+        document.write('<p>arr = ');
+        arr.forEach(element => { document.write(element + ' '); });
+        document.write('</p>');
+
+        let minItem = 9999;
+        let minIndex = 0;
+        for (let i = 0; i < 15; i++)
+        {
+            if (arr[i] < minItem)
+            {
+                minItem = arr[i];
+                minIndex = i;
+            }
+        }
+        arr[minIndex] = arr[14];
+        arr[14] = minItem;
+        document.write('<p>Min item = ' + minItem + '</p>');
+
+        document.write('<p>arr = ');
+        arr.forEach(element => { document.write(element + ' '); });
+        document.write('</p>');
+        
+        document.write('<a href="https://CaptainArsa.github.io/InternetProgramming/Lab4/lab4-3.html">Exercise 3</a>');
+    </script>
+</head>
+<body>
+</body>
+</html>

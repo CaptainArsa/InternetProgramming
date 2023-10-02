@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        .color {
+            width: 20px;
+            height: 15px;
+            display: inline-block;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <table style="background-color: lightgray;">
+        <tr><th colspan="3"><div>Основные цвета:</div></th></tr>
+        <tr>
+        <td><div class="color" style="background-color: red;"></div></td>
+        <td><div class="color" style="background-color: blue;"></div></td>
+        <td><div class="color" style="background-color: green;"></div></td>
+        </tr>
+        <tr>
+        <td><div class="color" style="background-color: yellow;"></div></td>
+        <td><div class="color" style="background-color: purple;"></div></td>
+        <td><div class="color" style="background-color: orange;"></div></td>
+        </tr>
+        <tr>
+        <td><div class="color" style="background-color: pink;"></div></td>
+        <td><div class="color" style="background-color: brown;"></div></td>
+        <td><div class="color" style="background-color: black;"></div></td>
+        </tr>
+        </table>
+        <a href="https://CaptainArsa.github.io/InternetProgramming/Lab7/lab7-5.html">Exercise 5</a>
+
+    <script>
+        let colors = document.querySelectorAll(".color");
+
+        for (let i = 0; i < colors.length; i++) {
+            colors[i].addEventListener("click", function() {
+                document.body.style.backgroundColor = this.style.backgroundColor;
+            });
+        }
+    </script>
+</body>
+</html>

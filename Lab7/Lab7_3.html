@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style>
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        li.folder:before {
+            content: "– ";
+        }
+        li.subfolder:before, li.file:before {
+            content: "└ ";
+        }
+        li {
+            cursor: pointer;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul id="tree" onmousedown="return false" onselectstart="return false">
+    <li class="folder">Папка 1
+    <ul>
+        <li class="subfolder">Подпапка 1.1</li>
+        <li class="subfolder">Подпапка 1.2</li>
+        <li class="subfolder">Подпапка 1.3
+        <ul>
+        <li class="file">Файл 1.3.1</li>
+        <li class="file">Файл 1.3.2</li>
+        </ul>
+        </li>
+    </ul>
+    </li>
+    <li class="folder">Папка 2
+    <ul>
+        <li class="subfolder">Подпапка 2.1
+        <ul>
+            <li class="file">Файл 2.1.1</li>
+            <li class="file">Файл 2.1.2</li>
+            <li class="file">Файл 2.1.3</li>
+            <li class="file">Файл 2.1.4</li>
+        </ul>
+        </li>
+        <li class="subfolder">Подпапка 2.2</li>
+    </ul>
+    </li>
+    </ul>
+    <a href="https://CaptainArsa.github.io/InternetProgramming/Lab7/lab7_4.html">Exercise 4</a>
+    <script>
+        let tree = document.getElementById("tree");
+
+        function toggleFolder(event) {
+            if (event.target.tagName === "LI" && event.target.children.length > 0) {
+                let children = event.target.children[0];
+                children.classList.toggle("hidden");
+            }
+        }
+
+        function highlightFolder(event) {
+            if (event.target.tagName === "LI") {
+                event.target.classList.toggle("bold");
+            }
+        }
+
+        tree.addEventListener("click", toggleFolder);
+        tree.addEventListener("mouseover", highlightFolder);
+        tree.addEventListener("mouseout", highlightFolder);
+    </script>
+</body>
+</html>

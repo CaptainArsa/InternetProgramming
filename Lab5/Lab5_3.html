@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        const chars = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        function randomStr(len)
+        {
+            let res = '';
+            for (let i = 0; i < len; i++) res += chars[Math.floor(Math.random() * chars.length)];
+            return res;
+        }
+
+        let str = randomStr(100);
+        document.write(`<p>Изначальная строка: "${str}"</p>`);
+        for (let i = 0; i < str.length; i++) if (str[i] != ' ')
+        {
+            let newChar;
+            if (str[i] != 'Z') newChar = chars[chars.indexOf(str[i]) + 1];
+            else newChar = 'A'
+            str = str.slice(0, i) + newChar + str.slice(i + 1);
+        }
+        document.write(`<p>Новая строка: "${str}"</p>`);
+
+        document.write('<a href="https://CaptainArsa.github.io/InternetProgramming/Lab5/lab5_4.html">Exercise 4</a>');
+    </script>
+</head>
+<body>
+</body>
+</html>

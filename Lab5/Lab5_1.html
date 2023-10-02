@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        function randomStr(len)
+        {
+            const chars = '+ABO0';
+            let res = '';
+            for (let i = 0; i < len; i++) res += chars[Math.floor(Math.random() * chars.length)];
+            return res;
+        }
+
+        document.write('<p>(Вариант №13)</p>');
+        str = randomStr(100);
+        countPlus = 0;
+        document.write(`<p>Изначальная строка: "${str}"</p>`);
+        
+        for (i = 0; i < str.length; i++)
+        {
+            if (str[i] == 'A' && str[i+1] == '+' && str[i+2] == 'B') countPlus++;
+        }
+        str=str.replace(/0/g, 'OO') ;
+        document.write(`<p>Новая строка: "${str}"</p>`);
+        document.write(`<p>Найдено ${countPlus} символов "+" между A и B</p>`);
+
+        document.write('<a href="https://CaptainArsa.github.io/InternetProgramming/Lab5/lab5_2.html">Exercise 2</a>');
+    </script>
+</head>
+<body>
+</body>
+</html>

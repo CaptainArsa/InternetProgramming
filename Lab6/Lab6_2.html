@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        function MobilePhone(type, os, screenSize, screenResolution, ram) {
+            this.type = type;
+            this.os = os;
+            this.screenSize = screenSize;
+            this.screenResolution = screenResolution;
+            this.ram = ram;
+        
+            Object.defineProperty(this, "type", {
+                get: function() { return type; },
+                set: function(value) { type = value; }
+            });
+        
+            Object.defineProperty(this, "os", {
+                get: function() { return os; },
+                set: function(value) { os = value; }
+            });
+        
+            Object.defineProperty(this, "screenSize", {
+                get: function() { return screenSize; },
+                set: function(value) { screenSize = value; }
+            });
+        
+            Object.defineProperty(this, "screenResolution", {
+                get: function() { return screenResolution; },
+                set: function(value) { screenResolution = value; }
+            });
+        
+            Object.defineProperty(this, "ram", {
+                get: function() { return ram; },
+                set: function(value) { ram = value; }
+            });
+            }
+        
+            MobilePhone.prototype.releaseDate = new Date();
+            MobilePhone.prototype.getInfo = function() {
+                return `type: ${this.type}, os: ${this.os}, screenSize: ${this.screenSize}, screenResolution: ${this.screenResolution}, ram: ${this.ram}, releaseDate: ${this.releaseDate.toDateString()}`;
+            };
+        
+            let mobilePhone = new MobilePhone('smartphone', 'android', 6, '1080 x 1920', 8);
+            document.write(`<p>Свойства объекта mobilePhone: "${mobilePhone.getInfo()}"</p>`);
+            document.write('<a href="CaptainArsa.github.io/InternetProgramming/Lab6/lab6-3.html">Exercise 3</a>');
+    </script>
+</head>
+<body>
+</body>
+</html>

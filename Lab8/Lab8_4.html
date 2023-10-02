@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <style type="text/css">
+        table, .add {
+            border-collapse: collapse;
+            margin: 50px auto;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <table id="table">
+        <tr>
+            <th>Type</th>
+            <th>OS</th>
+            <th>Screen size</th>
+            <th>Screen width</th>
+            <th>Screen height</th>
+            <th>RAM</th>
+        </tr>
+    </table>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <form id="form">
+                <label>Type:</label><br>
+                <select name="type">
+                <option value="Smartphone">Smartphone</option>
+                <option value="Tablet">Tablet</option>
+                <option value="Laptop">Laptop</option>
+                </select><br><br>
+            
+                <label>OS:</label><br>
+                <input type="radio" id="Android" name="os" value="Android" checked="checked">
+                <label for="Android">Android</label><br>
+                <input type="radio" id="iOS" name="os" value="iOS">
+                <label for="iOS">IOS</label><br><br>
+            
+                <label>Screen size:</label><br>
+                <input type="number" name="screenSize" value="6"><br><br>
+            
+                <label>Screen width (px):</label><br>
+                <input type="number" name="width" value="1080"><br><br>
+            
+                <label>Screen height (px):</label><br>
+                <input type="number" name="height" value="1920"><br><br>
+            
+                <label>RAM:</label><br>
+                <input type="number" name="ram" value="8"><br><br>
+            
+                <input type="button" value="Add device" onclick="addDevice()">
+                <input type="button" value="Close" onclick="closeModal()">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        class Device {
+            constructor(type, os, screenSize, width, height, ram) {
+                this.type = type;
+                this.os = os;
+                this.screenSize = screenSize;
+                this.width = width;
+                this.height = height;
+                this.ram = ram;
+            }
+        }
+
+        let devices = [];
+
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function addDevice() {
+            let form = document.getElementById("form");
+            let type = form.elements["type"].value;
+            let os = form.elements["os"].value;
+            let screenSize = form.elements["screenSize"].value;
+            let width = form.elements["width"].value;
+            let height = form.elements["height"].value;
+            let ram = form.elements["ram"].value;
+
+            let device = new Device(type, os, screenSize, width, height, ram);
+            devices.push(device);
+
+            updateTable();
+            form.reset();
+        }
+
+        function updateTable() {
+            let table = document.getElementById("table");
+            table.innerHTML = "<tr><th>Type</th><th>OS</th><th>Screen size</th><th>Screen width</th><th>Screen height</th><th>RAM</th></tr>";
+
+            for (let i = 0; i < devices.length; i++) {
+                let device = devices[i];
+                let row = table.insertRow(-1);
+                let typeCell = row.insertCell(0);
+                let osCell = row.insertCell(1);
+                let screenSizeCell = row.insertCell(2);
+                let widthCell = row.insertCell(3);
+                let heightCell = row.insertCell(4);
+                let ramCell = row.insertCell(5);
+
+                typeCell.innerHTML = device.type;
+                osCell.innerHTML = device.os;
+                screenSizeCell.innerHTML = device.screenSize;
+                widthCell.innerHTML = device.width;
+                heightCell.innerHTML = device.height;
+                ramCell.innerHTML = device.ram;
+            }
+        }
+
+        openModal();
+    </script>
+</body>
+</html>

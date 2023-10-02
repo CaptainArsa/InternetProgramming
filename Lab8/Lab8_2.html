@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polyakov Arseniy</title>
+    <script>
+        function validateForm() {
+            let passport = document.getElementById("passport").value;
+            let passportNumber = document.getElementById("passportNumber").value;
+            let answerNumber = document.getElementById("answerNumber").value;
+            let subject = document.getElementById("subject").value;
+            let captchaCode = document.getElementById("captchaCode").value;
+
+            let passportError = document.getElementById("passportError");
+            let passportNumberError = document.getElementById("passportNumberError");
+            let answerNumberError = document.getElementById("answerNumberError");
+            let subjectError = document.getElementById("subjectError");
+            let captchaCodeError = document.getElementById("captchaCodeError");
+
+            passportError.innerHTML = "";
+            passportNumberError.innerHTML = "";
+            answerNumberError.innerHTML = "";
+            subjectError.innerHTML = "";
+            captchaCodeError.innerHTML = "";
+            
+            if (passport.length != 2 || !passport.match(/[a-zA-Z]{2}/)) {
+                passportError.innerHTML = "Введите серию паспорта";
+            }
+        
+            if (passportNumber.length != 7 || isNaN(passportNumber)) {
+                passportNumberError.innerHTML = "Введите номер паспорта";
+            }
+        
+            if (answerNumber.length != 7 || isNaN(answerNumber)) {
+                answerNumberError.innerHTML = "Введите номер бланка";
+            }
+        
+            if (subject == "") {
+                subjectError.innerHTML = "Выберите предмет";
+            }
+        
+            if (captchaCode != 424636) {
+                captchaCodeError.innerHTML = "Введите код";
+            }
+        }
+    </script>
+</head>
+<body>
+       <form name="myForm">
+            <label for="passport">Серия паспорта:</label>
+            <input type="text" id="passport" name="passport">
+            <span id="passportError" style="color:red"></span><br>
+        
+            <label for="passportNumber">Номер паспорта:</label>
+            <input type="text" id="passportNumber" name="passportNumber">
+            <span id="passportNumberError" style="color:red"></span><br>
+        
+            <label for="answerNumber">Номер бланка:</label>
+            <input type="text" id="answerNumber" name="answerNumber">
+            <span id="answerNumberError" style="color:red"></span><br>
+        
+            <label for="subject">Предмет:</label>
+            <select id="subject" name="subject">
+                <option value="">Выберите предмет</option>
+                <option value="belarusian">Белорусский язык</option>
+                <option value="russian">Русский язык</option>
+                <option value="mathematics">Математика</option>
+                <option value="physics">Физика</option>
+            </select>
+            <span id="subjectError" style="color:red"></span><br>
+            
+            <img src="images/captcha.png"><br>
+        
+            <label for="captchaCode">Код на картинке:</label>
+            <input type="text" id="captchaCode" name="captchaCode">
+            <span id="captchaCodeError" style="color:red"></span><br>
+        
+            <button type="button" onclick="validateForm()">Найти</button><p></p>
+
+            <a href="https://CaptainArsa.github.io/InternetProgramming/Lab8/Lab8_3.html">Exercise 3</a>
+       </form>
+</body>
+</html>
