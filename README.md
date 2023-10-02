@@ -59,7 +59,7 @@
 * ##### [Exercise 3](https://CaptainArsa.github.io/InternetProgramming/Lab10/Lab10_3.html)
 * ##### [Exercise 4](https://CaptainArsa.github.io/InternetProgramming/Lab10/Lab10_4.html)
 
-#### [Lab 11](https://captainarsa.github.io/Lab11/) ([task](https://drive.google.com/file/d/1pPkfFfEFTf-B0bd-hvmbVtobwNMzwABs/view)):
+#### [Lab 11](https://captainarsa.github.io/InternetProgramming/Lab11/) ([task](https://drive.google.com/file/d/1pPkfFfEFTf-B0bd-hvmbVtobwNMzwABs/view)):
 * ##### [Exercise 1](https://CaptainArsa.github.io/InternetProgramming/Lab11/Lab11_1.html) (variant 23)
 * ##### [Exercise 2](https://CaptainArsa.github.io/InternetProgramming/Lab11/Lab11_2.html) (variant 23)
 * ##### [Exercise 3](https://CaptainArsa.github.io/InternetProgramming/Lab11/Lab11_3.html) (variant 23)
