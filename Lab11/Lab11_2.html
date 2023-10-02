@@ -69,7 +69,8 @@
                     let date = new Date(item.Date);
                     let formattedDate = formatDate(date);
                     let rate = item.Cur_OfficialRate;
-                    let row = `<tr><td>${formattedDate}</td><td>AFN</td><td>${rate}</td></tr>`;
+                    let valute = item.Cur_Abbreviation;
+                    let row = `<tr><td>${formattedDate}</td><td>${valute}</td><td>${rate}</td></tr>`;
                     document.querySelector('#data-table tbody').insertAdjacentHTML('beforeend', row);
                 });
             }).catch(error => {
