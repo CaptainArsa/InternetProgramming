@@ -64,7 +64,7 @@
 * ##### [Exercise 2](https://CaptainArsa.github.io/InternetProgramming/Lab11/Lab11_2.html) (variant 23)
 * ##### [Exercise 3](https://CaptainArsa.github.io/InternetProgramming/Lab11/Lab11_3.html) (variant 23)
 
-#### [Exam](https://captainarsa.github.io/InternetProgramming/Exam/):
+#### [Exam](https://captainarsa.github.io/InternetProgramming/Exam/main.html)
 ---
 ##### [Open GitHub](https://github.com/CaptainArsa/InternetProgramming)
 ###### thanks to Chekushin K. A.
