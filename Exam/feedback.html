@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<title>feedback</title>
+</head>
+<body>
+
+<div class="feedback">
+  <div id="inline">
+    <h1>Форма обратной связи</h1>
+      <input type="name" id="name" name="name" class="txt" placeholder="Ваше имя">
+      <input type="email" id="email" name="email" class="txt" placeholder="Ваш e-mail"> 
+      <textarea id="msg" name="msg" class="txtarea"  placeholder="Ваше сообщение:"></textarea>
+      <button id="btn" onclick="send()">Отправить</button>
+  </div>
+</div>
+<script>
+  function send() {
+      alert("Ваше сообщение отправлено")
+  }
+</script>
+
+</body>
+</html>

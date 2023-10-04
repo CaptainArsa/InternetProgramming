@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tasks</title>
+</head>
+
+<body>
+    <div id="inline">
+        <h1>Задачи для практики:</h1>
+        <form action="#" onsubmit="return false">
+            <label>
+                <span>1. Как изменится давление газа, если его объем увеличить в два раза при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+
+            <label>
+                <span>2. Сколько теплоты поглотит 1 кг воды при нагревании от 20°C до 80°C?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+
+            <label>
+                <span>3. Какая работа будет совершена при сжатии газа объемом 2 л до 0,5 л при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>4. Как изменится объем газа, если его давление увеличится в два раза при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>5. Как изменится температура газа, если его объем увеличится в три раза при постоянном давлении?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>6. Какая работа будет совершена при расширении газа от 2 л до 4 л при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>7. Как изменится давление газа, если его объем уменьшится в два раза при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>8. Сколько теплоты нужно отнять от 1 кг пара при его охлаждении от 100°C до 20°C?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>9. Как изменится объем газа, если его давление уменьшится в три раза при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>10. Как изменится температура газа, если его объем уменьшится в два раза при постоянном давлении? </span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>11. Какая работа будет совершена при сжатии газа объемом 3 л до 1 л при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>12. Как изменится давление газа, если его объем увеличится в три раза при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>13. Сколько теплоты поглотит 2 кг воды при нагревании от 10°C до 50°C?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>14. Какая работа будет совершена при расширении газа от 4 л до 2 л при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+            
+            <label>
+                <span>15. Как изменится объем газа, если его давление увеличится в три раза при постоянной температуре?</span><br>
+                <input placeholder="Ответ" type="text">
+            </label><br><br>
+        </form>
+        <button onclick="checkScore()">Узнать результаты решения</button>
+    </div>
+    <script>
+        let answers = [ 'уменьшится в два раза',
+                        '334000', 
+                        '0', 
+                        'уменьшится в два раза', 
+                        'уменьшится в три раза', 
+                        '0', 
+                        'увеличится в два раза', 
+                        '226000', 
+                        'увеличится в три раза', 
+                        'увеличится в два раза', 
+                        '0', 
+                        'уменьшится в три раза', 
+                        '668000', 
+                        '0', 
+                        'уменьшится в три раза'];
+
+        function checkScore() {
+            let score = 0;
+            let questions = [...document.forms[0].elements];
+            
+            questions.forEach((question, i) => {
+                if (question.value.toLowerCase() === answers[i].toLowerCase()) score++;
+            })
+            alert(`Правильно решено ${score} из 15 задач.`);
+        }
+    </script>
+</body>
+</html>

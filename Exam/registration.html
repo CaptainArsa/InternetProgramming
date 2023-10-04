@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration</title>
+</head>
+<body>
+    <div id="inline">
+        <h1>Регистрация/Авторизация:</h1>
+        <input id="changeModeButton" type="button" value="У меня есть аккаунт" onclick="changeMode()"><br><br>
+
+        <form id="registrationForm">
+            <label for="username">Придумайте логин:</label>
+            <input type="text" id="username" required><br><br>
+            
+            <label for="password">Придумайте пароль:</label>
+            <input type="password" id="password" required><br><br>
+            
+            <button type="submit">Зарегистрироваться</button>
+        </form>
+
+        <form id="loginForm" style='display: none;'>
+            <label for="loginUsername">Логин:</label>
+            <input type="text" id="loginUsername" required><br><br>
+            
+            <label for="loginPassword">Пароль:</label>
+            <input type="password" id="loginPassword" required><br><br>
+            
+            <button type="submit">Войти</button>
+        </form>
+
+        <script>
+            let nowIsReg = true;
+            let registrationForm = document.getElementById('registrationForm');
+            let loginForm = document.getElementById('loginForm');
+            let changeModeButton = document.getElementById('changeModeButton');
+
+            registrationForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                let username = document.getElementById('username').value;
+                let password = document.getElementById('password').value;
+
+                if (localStorage.getItem(username) !== null) {
+                    alert('Пользователь с таким логином уже существует');
+                    return;
+                }
+
+                localStorage.setItem(username, password);
+                alert('Регистрация успешно завершена');
+            });
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                let loginUsername = document.getElementById('loginUsername').value;
+                let loginPassword = document.getElementById('loginPassword').value;
+                let savedPassword = localStorage.getItem(loginUsername);
+
+                if (savedPassword === loginPassword) {
+                    alert('Авторизация успешна');
+                }
+                else {
+                    alert('Неправильный логин или пароль');
+                }
+            });
+
+            function changeMode() {
+                if (nowIsReg) {
+                    nowIsReg = false;
+                    changeModeButton.value = 'У меня нет аккаунта';
+                    registrationForm.style.display = 'none';
+                    loginForm.style.display = 'block';
+                }
+                else {
+                    nowIsReg = true;
+                    changeModeButton.value = 'У меня есть аккаунт';
+                    registrationForm.style.display = 'block';
+                    loginForm.style.display = 'none';
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
